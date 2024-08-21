@@ -5,9 +5,9 @@ import MenuIcon from "@/assets/icon-menu.svg";
 
 export const Header = () => {
   return (
-    <header className="py-4 border-b border-white/15 md:border-none">
+    <header className="sticky top-0 z-10 py-4 border-b border-white/15 md:border-none">
       <div className="container">
-        <div className="flex justify-between items-center md:border border-white/15 md:p-2.5 rounded-xl max-w-2xl mx-auto">
+        <div className="flex justify-between items-center md:border border-white/15 md:p-2.5 rounded-xl max-w-2xl mx-auto backdrop-blur">
           <div>
             <div className="border border-white/15 size-10 rounded-lg inline-flex justify-center items-center">
               <LogoIcon className="size-8" />
