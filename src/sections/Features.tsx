@@ -1,7 +1,9 @@
 "use client";
-import { DotLottiePlayer } from "@dotlottie/react-player";
+import { useState } from "react";
+import { animate, motion, useMotionTemplate, useMotionValue, ValueAnimationTransition } from 'framer-motion';
 
 import projectImage from "@/assets/product-image.png";
+import { FeatureTab } from "@/components/FeatureTab";
 
 const tabs = [
   {
@@ -31,27 +33,54 @@ const tabs = [
 ];
 
 export const Features = () => {
+  const [selectedTab, setSelectedTab] = useState<number>(0);
+
+  const backgroundPositionX = useMotionValue(tabs[0].backgroundPositionX);
+  const backgroundPositionY = useMotionValue(tabs[0].backgroundPositionY);
+  const backgroundSizeX = useMotionValue(tabs[0].backgroundSizeX);
+
+  const backgroundPosition = useMotionTemplate`${backgroundPositionX}% ${backgroundPositionY}%`;
+  const backgroundSize = useMotionTemplate`${backgroundSizeX}% auto`;
+
+  const handleSelectTab = (index: number) => {
+    if (index === selectedTab) return;
+    setSelectedTab(index);
+
+    const options: ValueAnimationTransition = {
+      duration: 2,
+      ease: "easeInOut",
+    }
+
+    animate(backgroundSizeX, [backgroundSizeX.get(), 100, tabs[index].backgroundSizeX], options);
+
+    animate(backgroundPositionX, [backgroundPositionX.get(), tabs[index].backgroundPositionX], options);
+
+    animate(backgroundPositionY, [backgroundPositionY.get(), tabs[index].backgroundPositionY], options);
+  }
+
   return <section className="py-20 md:py-24">
     <div className="container">
       <h2 className="text-5xl md:text-6xl font-medium text-center tracking-tighter">Elevate your SEO efforts.</h2>
       <p className="text-white/70 text-lg md:text-xl max-w-2xl mx-auto tracking-tight text-center mt-5">From small startups to large enterprises, our AI-driven tool has revolutionized the way businesses approach SEO.</p>
       <div className="mt-10 flex flex-col lg:flex-row gap-3">
-        {tabs.map((tab) => (
-          <div key={tab.title} className="border border-white/15 flex items-center p-2.5 rounded-xl gap-2.5 lg:flex-1">
-            <div className="size-12 border border-white/15 rounded-lg inline-flex items-center justify-center">
-              <DotLottiePlayer src={tab.icon} className="size-5" autoplay />
-            </div>
-            <div className="font-medium">{tab.title}</div>
-            {tab.isNew && (
-              <div className="text-sm rounded-full px-2 py-0.5 bg-[#8c44ff] text-black font-semibold">new</div>
-            )}
-          </div>
+        {tabs.map((tab, tabIndex) => (
+          <FeatureTab
+            key={tab.title}
+            {...tab}
+            selected={selectedTab === tabIndex}
+            onClick={() => handleSelectTab(tabIndex)}
+          />
         ))}
       </div>
       <div className="border border-white/20 p-2.5 rounded-xl mt-3">
-        <div className="aspect-video bg-cover border border-white/20 rounded-lg" style={{
-          backgroundImage: `url(${projectImage.src})`,
-        }}></div>
+        <motion.div
+          className="aspect-video bg-cover border border-white/20 rounded-lg"
+          style={{
+            backgroundPosition,
+            backgroundSize,
+            backgroundImage: `url(${projectImage.src})`,
+          }}
+        ></motion.div>
       </div>
     </div>
   </section>;
