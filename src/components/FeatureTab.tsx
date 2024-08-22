@@ -1,8 +1,8 @@
-import React, { ComponentPropsWithoutRef, useEffect, useRef } from 'react'
-import { DotLottieCommonPlayer, DotLottiePlayer } from '@dotlottie/react-player'
-import { animate, motion, useMotionTemplate, useMotionValue, ValueAnimationTransition } from 'framer-motion';
+import React, { ComponentPropsWithoutRef, useEffect, useRef } from "react";
+import { DotLottieCommonPlayer, DotLottiePlayer } from "@dotlottie/react-player";
+import { animate, motion, useMotionTemplate, useMotionValue, ValueAnimationTransition } from "framer-motion";
 
-interface TabProps extends ComponentPropsWithoutRef<'div'> {
+interface TabProps extends ComponentPropsWithoutRef<"div"> {
     icon: string,
     title: string,
     isNew: boolean,
@@ -58,7 +58,7 @@ export const FeatureTab = (tab: TabProps) => {
                     style={{
                         maskImage,
                     }}
-                    className='absolute inset-0 -m-px border border-[#a369ff] rounded-xl'>
+                    className="absolute inset-0 -m-px border border-[#a369ff] rounded-xl">
                 </motion.div>
             )}
             <div className="size-12 border border-white/15 rounded-lg inline-flex items-center justify-center">

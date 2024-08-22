@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { animate, motion, useMotionTemplate, useMotionValue, ValueAnimationTransition } from 'framer-motion';
+import { animate, motion, useMotionTemplate, useMotionValue, ValueAnimationTransition } from "framer-motion";
 
 import projectImage from "@/assets/product-image.png";
 import { FeatureTab } from "@/components/FeatureTab";
