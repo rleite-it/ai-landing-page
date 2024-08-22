@@ -52,7 +52,7 @@ export const FeatureTab = (tab: TabProps) => {
     }
 
     return (
-        <div ref={tabRef} onClick={tab.onClick} onMouseEnter={handleTabHover} className="relative border border-white/15 flex items-center p-2.5 rounded-xl gap-2.5 lg:flex-1">
+        <div ref={tabRef} onClick={tab.onClick} onMouseEnter={handleTabHover} className="relative border border-white/15 flex items-center p-2.5 rounded-xl gap-2.5 lg:flex-1 cursor-pointer">
             {tab.selected && (
                 <motion.div
                     style={{
