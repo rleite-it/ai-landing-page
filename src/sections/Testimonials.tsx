@@ -54,8 +54,8 @@ export const Testimonials = () => {
             duration: 45,
           }}
           className="flex gap-5 flex-none pr-5">
-          {[...testimonials, ...testimonials].map((testimonial) => (
-            <Testimonial  {...testimonial} />
+          {[...testimonials, ...testimonials].map((testimonial, index) => (
+            <Testimonial key={`${testimonial.name}-${index}`} {...testimonial} />
           ))}
         </motion.div>
       </div>

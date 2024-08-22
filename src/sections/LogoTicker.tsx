@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 import acmeLogo from "@/assets/logo-acme.png";
@@ -30,12 +31,12 @@ export const LogoTicker = () => {
             }}
             className="flex flex-none gap-14 pr-14"
           >
-            {[acmeLogo, pulseLogo, echoLogo, celestialLogo, apexLogo, quantumLogo, acmeLogo, pulseLogo, echoLogo, celestialLogo, apexLogo, quantumLogo].map((logo) => (
-              <img src={logo.src} className="h-6 w-auto" />
+            {[acmeLogo, pulseLogo, echoLogo, celestialLogo, apexLogo, quantumLogo, acmeLogo, pulseLogo, echoLogo, celestialLogo, apexLogo, quantumLogo].map((logo, index) => (
+              <Image key={`${logo.src}-${index}`} alt={logo.src} src={logo.src} className="h-6 w-auto" />
             ))}
           </motion.div>
         </div>
       </div>
     </div>
-  </section>;
+  </section>
 };
